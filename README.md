@@ -19,7 +19,7 @@ without specifying the full path. Keep in mind that these changes will apply to 
 not just the current one.
 
 current commands:
-list of commands:\
+</br>
 ```
                 gen or gen number (will generate a 16 random password or generate depending on given number ,ex: gen 50) </br>
                 gen s (asks you to put a number and saves it to a json file </br>
