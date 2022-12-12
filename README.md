@@ -3,7 +3,7 @@ a simple password generator but intended to be used as a windows command, it als
 
 req: python3
 
-1- run setup.cmd to add current folder as an env in windows (temporary)
+1- run setup.cmd to add current folder as an env in windows (temporary) </br>
 2- type gen h or gen help to see available commands
 
 ps: to make the command permanent follow these steps:
