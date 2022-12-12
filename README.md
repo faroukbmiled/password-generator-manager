@@ -20,16 +20,16 @@ not just the current one.
 
 current commands:
 list of commands:\n \
-                gen or gen number (will generate a 16 random password or generate depending on given number ,ex: gen 50)
-                gen s (asks you to put a number and saves it to a json file
-                gen rm/rmsh (remove a password from the json file: ex gen rm facebook, rmsh will remove json history file)
-                gen c or show (this will print all the passwords)
-                gen d (this will generate a password without promts if you provide 2 argumets ex: gen d 50 facebook)
-                gen n (this will generate a password depending on the given input)
-                gen f or find (this will find a password/value for the given name/key)
-                gen -s or -s number(this will generate a password for a given number without symbols, ex: gen -s 50/ gen -s 50 facebook
-                gen n (this will generate a password depending on the given input)
-                gen sh/history (show generated password history that wasnt saved/ generated with gen/ gen number)
-                gen o or open or oh/showhistory (this will open the json file that contains all the passwords)
-                testing:\n\t\tgen enc/encrypt or gen dec/decrypt (this will encrypt and decrypt one of the passwords json files,
-                params: h/history for history passwords, s/saved for saved passwords, full example gen enc h --> this will encrypt the whole json values
+                gen or gen number (will generate a 16 random password or generate depending on given number ,ex: gen 50) </br>
+                gen s (asks you to put a number and saves it to a json file </br>
+                gen rm/rmsh (remove a password from the json file: ex gen rm facebook, rmsh will remove json history file) </br>
+                gen c or show (this will print all the passwords) </br>
+                gen d (this will generate a password without promts if you provide 2 argumets ex: gen d 50 facebook) </br>
+                gen n (this will generate a password depending on the given input) </br>
+                gen f or find (this will find a password/value for the given name/key) </br>
+                gen -s or -s number(this will generate a password for a given number without symbols, ex: gen -s 50/ gen -s 50 facebook </br>
+                gen n (this will generate a password depending on the given input) </br>
+                gen sh/history (show generated password history that wasnt saved/ generated with gen/ gen number) </br>
+                gen o or open or oh/showhistory (this will open the json file that contains all the passwords) </br>
+                testing:\n\t\tgen enc/encrypt or gen dec/decrypt (this will encrypt and decrypt one of the passwords json files, </br>
+                params: h/history for history passwords, s/saved for saved passwords, full example gen enc h --> this will encrypt the whole json values </br>
