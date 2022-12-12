@@ -32,6 +32,7 @@ current commands:
                 gen n (this will generate a password depending on the given input) </br>
                 gen sh/history (show generated password history that wasnt saved/ generated with gen/ gen number) </br>
                 gen o or open or oh/showhistory (this will open the json file that contains all the passwords) </br>
-                testing:\n\t\tgen enc/encrypt or gen dec/decrypt (this will encrypt and decrypt one of the passwords json files, </br>
+                testing:</br>
+                gen enc/encrypt or gen dec/decrypt (this will encrypt and decrypt one of the passwords json files, </br>
                 params: h/history for history passwords, s/saved for saved passwords, full example gen enc h --> this will encrypt the whole json values </br>
                
