@@ -17,3 +17,19 @@ and close the window. After making these changes, the current folder will be per
 to the PATH environment variable, and you will be able to run executables in the current folder 
 without specifying the full path. Keep in mind that these changes will apply to all future sessions, 
 not just the current one.
+
+current commands:
+list of commands:\n \
+                gen or gen number (will generate a 16 random password or generate depending on given number ,ex: gen 50)\n \
+                gen s (asks you to put a number and saves it to a json file\n \
+                gen rm/rmsh (remove a password from the json file: ex gen rm facebook, rmsh will remove json history file)\n \
+                gen c or show (this will print all the passwords)\n \
+                gen d (this will generate a password without promts if you provide 2 argumets ex: gen d 50 facebook)\n \
+                gen n (this will generate a password depending on the given input)\n \
+                gen f or find (this will find a password/value for the given name/key)\n \
+                gen -s or -s number(this will generate a password for a given number without symbols, ex: gen -s 50/ gen -s 50 facebook\n \
+                gen n (this will generate a password depending on the given input)\n \
+                gen sh/history (show generated password history that wasnt saved/ generated with gen/ gen number)\n \
+                gen o or open or oh/showhistory (this will open the json file that contains all the passwords)\n \
+                testing:\n\t\tgen enc/encrypt or gen dec/decrypt (this will encrypt and decrypt one of the passwords json files, \n \
+                params: h/history for history passwords, s/saved for saved passwords, full example gen enc h --> this will encrypt the whole json values'
