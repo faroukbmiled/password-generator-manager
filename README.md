@@ -19,7 +19,7 @@ without specifying the full path. Keep in mind that these changes will apply to 
 not just the current one.
 
 current commands:
-list of commands:\n \
+list of commands:\
 ```
                 gen or gen number (will generate a 16 random password or generate depending on given number ,ex: gen 50) </br>
                 gen s (asks you to put a number and saves it to a json file </br>
@@ -34,4 +34,4 @@ list of commands:\n \
                 gen o or open or oh/showhistory (this will open the json file that contains all the passwords) </br>
                 testing:\n\t\tgen enc/encrypt or gen dec/decrypt (this will encrypt and decrypt one of the passwords json files, </br>
                 params: h/history for history passwords, s/saved for saved passwords, full example gen enc h --> this will encrypt the whole json values </br>
-                ```
+               
