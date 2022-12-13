@@ -214,7 +214,7 @@ def encrypt():
 def decrypt():
     if argv[2] == 's' or argv[2] == 'saved':
         choice = json_loc
-    if argv[2] == 'h' or argv[2] == 'history':
+    elif argv[2] == 'h' or argv[2] == 'history':
         choice = cache_temp
     try:
         with open(choice, 'r') as f:
