@@ -206,7 +206,7 @@ def encrypt():
                     encrypted_value = fernet.encrypt(json.dumps(value).encode()).decode()
                     encrypted_data[key] = encrypted_value
 
-        with open(cache_temp, 'w') as f:
+        with open(choice, 'w') as f:
             json.dump(encrypted_data, f, indent=4)
     except UnboundLocalError:
         print('use gen enc/encrypt h/history or gen enc/encrypt s/saved')
@@ -214,7 +214,7 @@ def encrypt():
 def decrypt():
     if argv[2] == 's' or argv[2] == 'saved':
         choice = json_loc
-    elif argv[2] == 'h' or argv[2] == 'history':
+    if argv[2] == 'h' or argv[2] == 'history':
         choice = cache_temp
     try:
         with open(choice, 'r') as f:
@@ -232,7 +232,7 @@ def decrypt():
                     data[key] = json.loads(decrypted_value)
                 else:
                     data[key] = value
-        with open(cache_temp, 'w') as f:
+        with open(choice, 'w') as f:
             json.dump(data, f, indent=4)
     except UnboundLocalError:
         print('use gen dec/decrypt h/history or gen dec/decrypt s/saved')
