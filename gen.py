@@ -7,7 +7,7 @@ import webbrowser
 import datetime
 from cryptography.fernet import Fernet
 import base64
-# ik its shit but it works lol, ill recode it when i finish eveyting in mind
+# ik its shit but it works lol, ill recode/clean it when i finish eveyting in mind
 # add the folder of the script where the cmd at as an environment variable in windows to use it as a command.
 
 json_fname = 'password.json'
