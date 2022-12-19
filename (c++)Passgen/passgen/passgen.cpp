@@ -34,17 +34,93 @@ std::string Passgen(std::mt19937& gen, int length) {
 }
 
 int main(int argc, char* argv[]) {
-    if (argc != 3) {
+
+    if (argc == 1) {
         std::cerr << "Usage: passgen <password length> <name>" << std::endl;
         return 1;
     }
-    int length = std::stoi(argv[1]);
-    std::string name = argv[2];
+
+    std::string argument = argv[1];
     std::string output_file = "password.json";
 
-    std::random_device rd;
-    std::mt19937 gen(rd());
+    if (argument == "show" || argument == "s") {
+        std::ifstream infile(output_file);
+        if (!infile.good()) {
+            std::cerr << "Error: could not open the password file." << std::endl;
+            return 1;
+        }
 
+        nlohmann::json j;
+        infile >> j;
+        infile.close();
+
+        std::cout << j.dump(4) << std::endl;
+        return 0;
+    }
+
+    if (argument == "o" || argument == "open") {
+        int result = system(("start " + output_file).c_str());
+        if (result != 0) {
+            std::cerr << "Error: could not open the password file." << std::endl;
+            return 1;
+        }
+        return 0;
+    }
+
+    if (argument == "rm" || argument == "remove") {
+
+        if (argc != 3) {
+            std::cerr << "Error: please specify a name to remove." << std::endl;
+            return 1;
+        }
+
+        std::ifstream infile(output_file);
+        if (!infile.good()) {
+            std::cerr << "Error: could not open the password file." << std::endl;
+            return 1;
+        }
+
+        nlohmann::json j;
+        infile >> j;
+        infile.close();
+
+        std::string lowercase_convert = argv[2];
+        std::transform(lowercase_convert.begin(), lowercase_convert.end(), lowercase_convert.begin(), [](unsigned char c) { return std::tolower(c); });
+
+
+        bool removed = false;
+        for (nlohmann::json::iterator it = j.begin(); it != j.end(); ++it) {
+            std::string lowercase_key = it.key();
+            std::transform(lowercase_key.begin(), lowercase_key.end(), lowercase_key.begin(), [](unsigned char c) { return std::tolower(c); });
+            if (lowercase_key == lowercase_convert) {
+                j.erase(it);
+                removed = true;
+                break;
+            }
+        }
+
+        if (removed) {
+            std::cerr << lowercase_convert << ": removed successfully." << std::endl;
+            return 1;
+        }
+
+        if (!removed) {
+            std::cerr << "Error: name not found in the password file." << std::endl;
+            return 1;
+        }
+
+        std::ofstream outfile(output_file);
+        outfile << std::setw(4) << j << std::endl;
+        outfile.close();
+
+        return 0;
+    }
+
+    int length = std::stoi(argv[1]);
+
+    std::string name = argv[2];
+    std::random_device rd;
+    std::mt19937 gen(rd()); 
     std::string password = Passgen(gen, length);
 
     nlohmann::json j;
