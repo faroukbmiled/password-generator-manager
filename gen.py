@@ -7,7 +7,8 @@ import webbrowser
 import datetime
 from cryptography.fernet import Fernet
 import base64
-# ik its shit but it works lol, ill recode/clean it when i finish eveyting in mind
+
+# ik its shit but it works lol, ill recode it when i finish eveyting in mind
 # add the folder of the script where the cmd at as an environment variable in windows to use it as a command.
 
 json_fname = 'password.json'
@@ -29,6 +30,22 @@ elif not os.path.exists(cache_temp):
 else:
     pass
 
+def show_help():
+    print('list of commands:\n \
+    gen or gen number (will generate a 16 random password or generate depending on given number ,ex: gen 50)\n \
+    gen s (asks you to put a number and saves it to a json file\n \
+    gen rm/rmsh (remove a password from the json file: ex gen rm facebook, rmsh will remove json history file)\n \
+    gen c or show (this will print all the passwords)\n \
+    gen d (this will generate a password without promts if you provide 2 argumets ex: gen d 50 facebook)\n \
+    gen n (this will generate a password depending on the given input)\n \
+    gen f or find (this will find a password/value for the given name/key)\n \
+    gen -s or -s number(this will generate a password for a given number without symbols, ex: gen -s 50/ gen -s 50 facebook\n \
+    gen n (this will generate a password depending on the given input)\n \
+    gen sh/history (show generated password history that wasnt saved/ generated with gen/ gen number)\n \
+    gen o or open or oh/showhistory (this will open the json file that contains all the passwords)\n \
+    testing:\n\tgen enc/encrypt or gen dec/decrypt (this will encrypt and decrypt one of the passwords json files, \n \
+    params: h/history for history passwords, s/saved for saved passwords, full example gen enc h --> this will encrypt the whole json values')
+
 try:
     try:
         try:
@@ -42,20 +59,7 @@ try:
                 os.remove(cache_temp)
                 exit()
             if argv[1] == 'help' or argv[1] == 'h':
-                print('list of commands:\n \
-                gen or gen number (will generate a 16 random password or generate depending on given number ,ex: gen 50)\n \
-                gen s (asks you to put a number and saves it to a json file\n \
-                gen rm/rmsh (remove a password from the json file: ex gen rm facebook, rmsh will remove json history file)\n \
-                gen c or show (this will print all the passwords)\n \
-                gen d (this will generate a password without promts if you provide 2 argumets ex: gen d 50 facebook)\n \
-                gen n (this will generate a password depending on the given input)\n \
-                gen f or find (this will find a password/value for the given name/key)\n \
-                gen -s or -s number(this will generate a password for a given number without symbols, ex: gen -s 50/ gen -s 50 facebook\n \
-                gen n (this will generate a password depending on the given input)\n \
-                gen sh/history (show generated password history that wasnt saved/ generated with gen/ gen number)\n \
-                gen o or open or oh/showhistory (this will open the json file that contains all the passwords)\n \
-                testing:\n\t\tgen enc/encrypt or gen dec/decrypt (this will encrypt and decrypt one of the passwords json files, \n \
-                params: h/history for history passwords, s/saved for saved passwords, full example gen enc h --> this will encrypt the whole json values')
+                show_help()
                 exit()
             elif argv[1] == 'o' or argv[1] == 'open':
                 webbrowser.open(json_loc)
@@ -87,14 +91,16 @@ try:
                 contents = f.read()
             print (contents)
             exit()
-        if argv[1] == 'f' or argv[1] == 'find':
+        if argv[1].lower() == 'f' or argv[1].lower() == 'find':
+            search_string = argv[2].lower()
             with open(json_loc, 'r') as f:
                 contents = f.read()
-                try:
-                    p = json.loads(contents)[argv[2]]
-                    print (p)
-                except KeyError:
-                    print('invalid key, try another password name or use gen c to show all')
+            data = json.loads(contents)
+            for key in data:
+                if search_string in key.lower():
+                    print(f'Found "{key}": "{data[key]}"')
+                    exit()
+            print(f'No matching password for {search_string}, try again')
             exit()
         else:
             pass
