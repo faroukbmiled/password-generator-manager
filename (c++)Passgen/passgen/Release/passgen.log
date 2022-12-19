@@ -1,0 +1,7 @@
+﻿  passgen.cpp
+  Generating code
+  487 of 897 functions (54.3%) were compiled, the rest were copied from previous compilation.
+    203 functions were new in current compilation
+    58 functions had inline decision re-evaluated but remain unchanged
+  Finished generating code
+  passgen.vcxproj -> C:\Users\Administrator\source\repos\passgen\Release\passgen.exe
