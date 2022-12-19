@@ -1,11 +1,11 @@
 # password-generator-manager
 a simple password generator but intended to be used as a windows command, it also manage generated passwords
 
-#C++ implementaion:
+# C++ implementaion:
 requirements : vs c++ console to build the project and "nlohmann/json.hpp" for manipulation json file 
 c++ console implementaion in the works: providing more details later on (trying to translate python script to c++)
 
-#Python script:
+# Python script:
 
 requirements : python3
 
