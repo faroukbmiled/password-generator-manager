@@ -47,9 +47,22 @@ int main(int argc, char* argv[]) {
 
     std::string password = Passgen(gen, length);
 
-    nlohmann::json j = { {name, password} };
+    nlohmann::json j;
+    std::ifstream infile(output_file);
+    if (infile.good()) {
+        infile >> j;
+    }
+    infile.close();
+
+    if (j.count(name) > 0) {
+        std::cerr << "Error: name already exists in the password file. Please choose a different name." << std::endl;
+        return 1;
+    }
+
+    j[name] = password;
+
     std::ofstream outfile(output_file);
-    outfile << j;
+    outfile << std::setw(4) << j << std::endl;
     outfile.close();
 
     std::cout << "Generated password: " << password << std::endl;
