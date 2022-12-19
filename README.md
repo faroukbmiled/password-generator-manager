@@ -1,7 +1,13 @@
-# python-password-generator-manager
+# password-generator-manager
 a simple password generator but intended to be used as a windows command, it also manage generated passwords
 
-req: python3
+C++ implementaion:
+requirements : vs c++ console to build the project and "nlohmann/json.hpp" for manipulation json file 
+c++ console implementaion in the works: providing more details later on (trying to translate python script to c++)
+
+Python script:
+
+requirements : python3
 
 1- run setup.cmd to add current folder as an env in windows (temporary) </br>
 2- type gen h or gen help to see available commands
