@@ -2,7 +2,7 @@
 a simple password generator but intended to be used as a windows command, it also manage generated passwords
 
 # C++ implementaion:
-requirements : vs c++ console to build the project and "nlohmann/json.hpp" for manipulation json file 
+requirements : vs c++ console to build the project and "nlohmann/json.hpp" for manipulation json file </br>
 c++ console implementaion in the works: providing more details later on (trying to translate python script to c++)
 
 # Python script:
