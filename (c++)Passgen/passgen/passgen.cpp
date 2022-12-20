@@ -47,19 +47,7 @@ int main(int argc, char* argv[]) {
     std::string argument = argv[1];
     std::string output_file = "password.json";
     std::string history_file = "history.json";
-    std::string password;
-    std::mt19937 gen(std::random_device{}());
-    int length = std::stoi(argv[1]);
-
-    if (argc > 1 && std::string(argv[argc - 1]) == "-s") {
-        bool symb = false;
-        password = Passgen(gen, length, symb);
-    }
-    else {
-        bool symb = true;
-        password = Passgen(gen, length, symb);
-    }
-
+ 
     if (argument == "show" || argument == "s") {
         std::ifstream infile(output_file);
         if (!infile.good()) {
@@ -89,16 +77,6 @@ int main(int argc, char* argv[]) {
         std::cout << j.dump(4) << std::endl;
         return 0;
     }
-
-    if (argument == "o" || argument == "open") {
-        int result = system(("start " + output_file).c_str());
-        if (result != 0) {
-            std::cerr << "Error: could not open the password file." << std::endl;
-            return 1;
-        }
-        return 0;
-    }
-
 
     if (argument == "oh" || argument == "openhistory") {
         int result = system(("start " + history_file).c_str());
@@ -154,6 +132,14 @@ int main(int argc, char* argv[]) {
         return 0;
     }
 
+    if (argument == "o" || argument == "open") {
+        int result = system(("start " + output_file).c_str());
+        if (result != 0) {
+            std::cerr << "Error: could not open the password file." << std::endl;
+            return 1;
+        }
+        return 0;
+    }
 
     if ((argument == "f" || argument == "find") && argc == 3) {
         std::string name = argv[2];
@@ -185,7 +171,24 @@ int main(int argc, char* argv[]) {
         }
     }
 
-    if (argc == 2) {
+    // checking is -s provided as last agument to generate a password with or without symbols
+    // this block interferes with above code ,thats why its here lol
+
+    int length = std::stoi(argv[1]);
+    std::string password;
+    std::mt19937 gen(std::random_device{}());
+    if (argc > 1 && std::string(argv[argc - 1]) == "-s" || argc > 1 && std::string(argv[argc - 1]) == "-symbols") {
+        bool symb = false;
+        password = Passgen(gen, length, symb);
+    }
+    else {
+        bool symb = true;
+        password = Passgen(gen, length, symb);
+    }
+
+
+    std::string symb_arg = argv[2];
+    if (argc == 2 || argc == 3 && symb_arg == "-s" || argc == 3 && symb_arg == "-symbols") {
         try {
             if (length > 0) {
                 std::mt19937 gen(std::random_device{}());
@@ -247,6 +250,10 @@ int main(int argc, char* argv[]) {
     }
 
     std::string name = argv[2];
+
+    if (name == "-s" || name == "-symbols")
+        return 0;
+
     std::random_device rd; 
 
     nlohmann::json j;
