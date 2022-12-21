@@ -186,7 +186,7 @@ int main(int argc, char* argv[]) {
     bool symb = true;
     if (argc > 2) {
         std::string symb_arg = argv[2];
-        if (symb_arg == "-s" || symb_arg == "-symbols") {
+        if (argc > 1 && std::string(argv[argc - 1]) == "-s" || argc > 1 && std::string(argv[argc - 1]) == "-symbols") {
             symb = false;
         }
     }
