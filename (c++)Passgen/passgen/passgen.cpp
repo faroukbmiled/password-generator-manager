@@ -6,7 +6,6 @@
 #include <ctime>
 #include <nlohmann/json.hpp>
 
-
 std::string Passgen(std::mt19937& gen, int length, bool symb) {
 
     std::string password;
@@ -16,7 +15,13 @@ std::string Passgen(std::mt19937& gen, int length, bool symb) {
     std::uniform_int_distribution<> random_symbol(35, 47);
 
     for (int i = 0; i < length; i++) {
-        int r = std::uniform_int_distribution<>(0, 3)(gen);
+        int r;
+        if (symb) {
+            r = std::uniform_int_distribution<>(0, 3)(gen);
+        }
+        else {
+            r = std::uniform_int_distribution<>(0, 2)(gen);
+        }
         if (r == 0) {
             password += std::to_string(random(gen));
         }
@@ -173,22 +178,22 @@ int main(int argc, char* argv[]) {
 
     // checking is -s provided as last agument to generate a password with or without symbols
     // this block interferes with above code ,thats why its here lol
-
+    
     int length = std::stoi(argv[1]);
     std::string password;
     std::mt19937 gen(std::random_device{}());
-    if (argc > 1 && std::string(argv[argc - 1]) == "-s" || argc > 1 && std::string(argv[argc - 1]) == "-symbols") {
-        bool symb = false;
-        password = Passgen(gen, length, symb);
-    }
-    else {
-        bool symb = true;
-        password = Passgen(gen, length, symb);
+
+    bool symb = true;
+    if (argc > 2) {
+        std::string symb_arg = argv[2];
+        if (symb_arg == "-s" || symb_arg == "-symbols") {
+            symb = false;
+        }
     }
 
+    password = Passgen(gen, length, symb);
 
-    std::string symb_arg = argv[2];
-    if (argc == 2 || argc == 3 && symb_arg == "-s" || argc == 3 && symb_arg == "-symbols") {
+    if (argc == 2 || argc == 3) {
         try {
             if (length > 0) {
                 std::mt19937 gen(std::random_device{}());
