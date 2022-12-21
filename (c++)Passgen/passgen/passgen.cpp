@@ -98,6 +98,11 @@ int main(int argc, char* argv[]) {
             std::cout << "History file removed." << std::endl;
             return 1;
         }
+        else if (argument == "rms") {
+            std::remove("password.json");
+            std::cout << "Password file removed." << std::endl;
+            return 1;
+        }
     }
 
     if (argument == "rm" || argument == "remove") {
@@ -180,20 +185,23 @@ int main(int argc, char* argv[]) {
     // this block interferes with above code ,thats why its here lol
     
     int length = std::stoi(argv[1]);
+    std::string ifsymb;
     std::string password;
     std::mt19937 gen(std::random_device{}());
 
     bool symb = true;
     if (argc > 2) {
-        std::string symb_arg = argv[2];
         if (argc > 1 && std::string(argv[argc - 1]) == "-s" || argc > 1 && std::string(argv[argc - 1]) == "-symbols") {
+            ifsymb = argv[2];
             symb = false;
         }
     }
 
     password = Passgen(gen, length, symb);
 
-    if (argc == 2 || argc == 3) {
+    
+
+    if (argc == 2 || argc == 3 && ifsymb =="-s" || argc == 3 && ifsymb == "-symbols") {
         try {
             if (length > 0) {
                 std::mt19937 gen(std::random_device{}());
